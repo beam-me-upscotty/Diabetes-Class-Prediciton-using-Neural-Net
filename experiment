@@ -1,0 +1,1300 @@
+Python 3.6.5 (default, May  3 2018, 10:08:28) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 2.4.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: import numpy as np
+
+In [2]: import numpy as np
+
+In [3]: import matplotlib.pyplot as plt
+
+In [4]: import pandas as pd
+
+In [5]: 
+
+In [5]: dataset = pd.read_csv('dataset/pima-indians-diabetes.csv')
+
+In [6]: X = dataset.iloc[:,:8].values
+
+In [7]: print(X)
+[[  6.    148.     72.    ...  33.6     0.627  50.   ]
+ [  1.     85.     66.    ...  26.6     0.351  31.   ]
+ [  8.    183.     64.    ...  23.3     0.672  32.   ]
+ ...
+ [  5.    121.     72.    ...  26.2     0.245  30.   ]
+ [  1.    126.     60.    ...  30.1     0.349  47.   ]
+ [  1.     93.     70.    ...  30.4     0.315  23.   ]]
+
+In [8]: Y = dataset.iloc[:,8].values
+
+In [9]: print(Y)
+[1 0 1 0 1 0 1 0 1 1 0 1 0 1 1 1 1 1 0 1 0 0 1 1 1 1 1 0 0 0 0 1 0 0 0 0 0
+ 1 1 1 0 0 0 1 0 1 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 1 0 0 1 0 1 0 0 0 1 0 1 0
+ 0 0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 1 1
+ 1 0 0 1 1 1 0 0 0 1 0 0 0 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+ 0 0 0 0 1 0 1 1 0 0 0 1 0 0 0 0 1 1 0 0 0 0 1 1 0 0 0 1 0 1 0 1 0 0 0 0 0
+ 1 1 1 1 1 0 0 1 1 0 1 0 1 1 1 0 0 0 0 0 0 1 1 0 1 0 0 0 1 1 1 1 0 1 1 1 1
+ 0 0 0 0 0 1 0 0 1 1 0 0 0 1 1 1 1 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 0
+ 1 0 1 0 0 1 0 1 0 0 1 1 0 0 0 0 0 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 1 0 0
+ 1 0 1 0 1 1 0 1 0 0 1 0 1 1 0 0 1 0 1 0 0 1 0 1 0 1 1 1 0 0 1 0 1 0 0 0 1
+ 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 0 1 1 0 0 1 0 0 1 0 0 1
+ 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 1 1 1 0 0 1 0 0 1 0 0 1 0 1 1 0 1 0 1 0 1
+ 0 1 1 0 0 0 0 1 1 0 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 0 0 0 1 0 0 0 0 1 0 0 1
+ 1 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 1
+ 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0 1 1 0
+ 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 1 1 0 0 1 1 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 0
+ 1 0 0 1 0 0 1 0 0 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0
+ 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 1 1 1 0 0 0 0 0 0 1 0 0 0 1 0 1 1 1 1 0
+ 1 1 0 0 0 0 0 0 0 1 1 0 1 0 0 1 0 1 0 0 0 0 0 1 0 1 0 1 0 1 1 0 0 0 0 1 1
+ 0 0 0 1 0 1 1 0 0 1 0 0 1 1 0 0 1 0 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 1
+ 1 0 0 1 0 0 1 0 1 1 1 0 0 1 1 1 0 1 0 1 0 1 0 0 0 0 1 0]
+
+In [10]: 
+
+In [10]: from sklearn.model_selection import train_test_split
+
+In [11]: X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2)
+
+In [12]: 
+
+In [12]: 
+
+In [12]: import keras
+Using TensorFlow backend.
+
+In [13]: from keras.models import Sequential
+
+In [14]: from keras.layers import Dense
+
+In [15]: 
+
+In [15]: model = Sequential()
+
+In [16]: 
+
+In [16]: # first layer with 8 input 
+
+In [17]: model.add(Dense(output_dim = 32, init = 'uniform', activation = 'relu', input_dim = 8))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="relu", input_dim=8, units=32, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [18]: # 2nd layer
+
+In [19]: model.add(Dense(output_dim = 6, init = 'uniform', activation = 'relu'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="relu", units=6, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [20]: # 3rd layer
+
+In [21]: model.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", units=1, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [22]: 
+
+In [22]: # Compiling Neural Network
+
+In [23]: model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+In [24]: model.fit(X_train, y_train, batch_size = 10, nb_epoch = 150)
+/usr/bin/ipython3:1: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  #!/usr/bin/env python3
+Epoch 1/150
+614/614 [==============================] - 0s 540us/step - loss: 0.6776 - acc: 0.6384
+Epoch 2/150
+614/614 [==============================] - 0s 107us/step - loss: 0.6612 - acc: 0.6515
+Epoch 3/150
+614/614 [==============================] - 0s 110us/step - loss: 0.6487 - acc: 0.6531
+Epoch 4/150
+614/614 [==============================] - 0s 101us/step - loss: 0.6470 - acc: 0.6515
+Epoch 5/150
+614/614 [==============================] - 0s 106us/step - loss: 0.6313 - acc: 0.6450
+Epoch 6/150
+614/614 [==============================] - 0s 104us/step - loss: 0.6199 - acc: 0.6694
+Epoch 7/150
+614/614 [==============================] - 0s 99us/step - loss: 0.6225 - acc: 0.6612
+Epoch 8/150
+614/614 [==============================] - 0s 109us/step - loss: 0.6045 - acc: 0.6840
+Epoch 9/150
+614/614 [==============================] - 0s 100us/step - loss: 0.6085 - acc: 0.6808
+Epoch 10/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5951 - acc: 0.7020
+Epoch 11/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5928 - acc: 0.6922
+Epoch 12/150
+614/614 [==============================] - 0s 102us/step - loss: 0.5909 - acc: 0.6889
+Epoch 13/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5912 - acc: 0.6987
+Epoch 14/150
+614/614 [==============================] - 0s 114us/step - loss: 0.5902 - acc: 0.6840
+Epoch 15/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5883 - acc: 0.7020
+Epoch 16/150
+614/614 [==============================] - 0s 97us/step - loss: 0.5886 - acc: 0.7052
+Epoch 17/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5813 - acc: 0.6857
+Epoch 18/150
+614/614 [==============================] - 0s 105us/step - loss: 0.5870 - acc: 0.6987
+Epoch 19/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5866 - acc: 0.6971
+Epoch 20/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5770 - acc: 0.7101
+Epoch 21/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5916 - acc: 0.7003
+Epoch 22/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5799 - acc: 0.7020
+Epoch 23/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5789 - acc: 0.6938
+Epoch 24/150
+614/614 [==============================] - 0s 97us/step - loss: 0.5798 - acc: 0.7085
+Epoch 25/150
+614/614 [==============================] - 0s 109us/step - loss: 0.5749 - acc: 0.7101
+Epoch 26/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5709 - acc: 0.7036
+Epoch 27/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5806 - acc: 0.7199
+Epoch 28/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5743 - acc: 0.7134
+Epoch 29/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5720 - acc: 0.7199
+Epoch 30/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5692 - acc: 0.7085
+Epoch 31/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5691 - acc: 0.7264
+Epoch 32/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5731 - acc: 0.7068
+Epoch 33/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5682 - acc: 0.7134
+Epoch 34/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5678 - acc: 0.7199
+Epoch 35/150
+614/614 [==============================] - 0s 97us/step - loss: 0.5634 - acc: 0.6987
+Epoch 36/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5692 - acc: 0.7150
+Epoch 37/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5656 - acc: 0.7101
+Epoch 38/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5622 - acc: 0.7117
+Epoch 39/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5635 - acc: 0.7199
+Epoch 40/150
+614/614 [==============================] - 0s 105us/step - loss: 0.5656 - acc: 0.7182
+Epoch 41/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5631 - acc: 0.7199
+Epoch 42/150
+614/614 [==============================] - 0s 101us/step - loss: 0.5741 - acc: 0.6954
+Epoch 43/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5587 - acc: 0.7329
+Epoch 44/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5564 - acc: 0.7052
+Epoch 45/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5610 - acc: 0.7231
+Epoch 46/150
+614/614 [==============================] - 0s 101us/step - loss: 0.5538 - acc: 0.7117
+Epoch 47/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5605 - acc: 0.7199
+Epoch 48/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5546 - acc: 0.7280
+Epoch 49/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5560 - acc: 0.7101
+Epoch 50/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5541 - acc: 0.7166
+Epoch 51/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5529 - acc: 0.7117
+Epoch 52/150
+614/614 [==============================] - 0s 110us/step - loss: 0.5548 - acc: 0.7264
+Epoch 53/150
+614/614 [==============================] - 0s 108us/step - loss: 0.5535 - acc: 0.7280
+Epoch 54/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5492 - acc: 0.7394
+Epoch 55/150
+614/614 [==============================] - 0s 98us/step - loss: 0.5479 - acc: 0.7231
+Epoch 56/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5425 - acc: 0.7264
+Epoch 57/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5404 - acc: 0.7248
+Epoch 58/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5434 - acc: 0.7231
+Epoch 59/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5449 - acc: 0.7264
+Epoch 60/150
+614/614 [==============================] - 0s 96us/step - loss: 0.5480 - acc: 0.7362
+Epoch 61/150
+614/614 [==============================] - 0s 102us/step - loss: 0.5450 - acc: 0.7231
+Epoch 62/150
+614/614 [==============================] - 0s 107us/step - loss: 0.5457 - acc: 0.7296
+Epoch 63/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5421 - acc: 0.7329
+Epoch 64/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5364 - acc: 0.7459
+Epoch 65/150
+614/614 [==============================] - 0s 111us/step - loss: 0.5337 - acc: 0.7410
+Epoch 66/150
+614/614 [==============================] - 0s 96us/step - loss: 0.5377 - acc: 0.7427
+Epoch 67/150
+614/614 [==============================] - 0s 107us/step - loss: 0.5381 - acc: 0.7345
+Epoch 68/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5356 - acc: 0.7443
+Epoch 69/150
+614/614 [==============================] - 0s 107us/step - loss: 0.5346 - acc: 0.7427
+Epoch 70/150
+614/614 [==============================] - 0s 98us/step - loss: 0.5363 - acc: 0.7329
+Epoch 71/150
+614/614 [==============================] - 0s 109us/step - loss: 0.5312 - acc: 0.7492
+Epoch 72/150
+614/614 [==============================] - 0s 97us/step - loss: 0.5309 - acc: 0.7264
+Epoch 73/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5316 - acc: 0.7345
+Epoch 74/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5215 - acc: 0.7638
+Epoch 75/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5281 - acc: 0.7394
+Epoch 76/150
+614/614 [==============================] - 0s 109us/step - loss: 0.5255 - acc: 0.7508
+Epoch 77/150
+614/614 [==============================] - 0s 101us/step - loss: 0.5220 - acc: 0.7410
+Epoch 78/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5239 - acc: 0.7296
+Epoch 79/150
+614/614 [==============================] - 0s 111us/step - loss: 0.5225 - acc: 0.7557
+Epoch 80/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5170 - acc: 0.7638
+Epoch 81/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5170 - acc: 0.7476
+Epoch 82/150
+614/614 [==============================] - 0s 110us/step - loss: 0.5185 - acc: 0.7573
+Epoch 83/150
+614/614 [==============================] - 0s 102us/step - loss: 0.5132 - acc: 0.7557
+Epoch 84/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5130 - acc: 0.7557
+Epoch 85/150
+614/614 [==============================] - 0s 106us/step - loss: 0.5227 - acc: 0.7541
+Epoch 86/150
+614/614 [==============================] - 0s 103us/step - loss: 0.5130 - acc: 0.7557
+Epoch 87/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5120 - acc: 0.7622
+Epoch 88/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5113 - acc: 0.7508
+Epoch 89/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5064 - acc: 0.7638
+Epoch 90/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5084 - acc: 0.7492
+Epoch 91/150
+614/614 [==============================] - 0s 99us/step - loss: 0.5060 - acc: 0.7524
+Epoch 92/150
+614/614 [==============================] - 0s 104us/step - loss: 0.5119 - acc: 0.7362
+Epoch 93/150
+614/614 [==============================] - 0s 100us/step - loss: 0.5063 - acc: 0.7622
+Epoch 94/150
+614/614 [==============================] - 0s 102us/step - loss: 0.5050 - acc: 0.7557
+Epoch 95/150
+614/614 [==============================] - 0s 101us/step - loss: 0.5176 - acc: 0.7606
+Epoch 96/150
+614/614 [==============================] - 0s 101us/step - loss: 0.5062 - acc: 0.7443
+Epoch 97/150
+614/614 [==============================] - 0s 105us/step - loss: 0.5023 - acc: 0.7557
+Epoch 98/150
+614/614 [==============================] - 0s 102us/step - loss: 0.4986 - acc: 0.7524
+Epoch 99/150
+614/614 [==============================] - 0s 102us/step - loss: 0.4996 - acc: 0.7590
+Epoch 100/150
+614/614 [==============================] - 0s 100us/step - loss: 0.4984 - acc: 0.7638
+Epoch 101/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4962 - acc: 0.7704
+Epoch 102/150
+614/614 [==============================] - 0s 99us/step - loss: 0.4973 - acc: 0.7736
+Epoch 103/150
+614/614 [==============================] - 0s 107us/step - loss: 0.5090 - acc: 0.7687
+Epoch 104/150
+614/614 [==============================] - 0s 107us/step - loss: 0.4951 - acc: 0.7541
+Epoch 105/150
+614/614 [==============================] - 0s 107us/step - loss: 0.5003 - acc: 0.7606
+Epoch 106/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4920 - acc: 0.7622
+Epoch 107/150
+614/614 [==============================] - 0s 100us/step - loss: 0.4956 - acc: 0.7769
+Epoch 108/150
+614/614 [==============================] - 0s 114us/step - loss: 0.4962 - acc: 0.7606
+Epoch 109/150
+614/614 [==============================] - 0s 110us/step - loss: 0.5106 - acc: 0.7362
+Epoch 110/150
+614/614 [==============================] - 0s 110us/step - loss: 0.4893 - acc: 0.7671
+Epoch 111/150
+614/614 [==============================] - 0s 106us/step - loss: 0.4878 - acc: 0.7671
+Epoch 112/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4872 - acc: 0.7638
+Epoch 113/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4906 - acc: 0.7834
+Epoch 114/150
+614/614 [==============================] - 0s 98us/step - loss: 0.4907 - acc: 0.7687
+Epoch 115/150
+614/614 [==============================] - 0s 102us/step - loss: 0.4925 - acc: 0.7671
+Epoch 116/150
+614/614 [==============================] - 0s 106us/step - loss: 0.4991 - acc: 0.7573
+Epoch 117/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4888 - acc: 0.7769
+Epoch 118/150
+614/614 [==============================] - 0s 112us/step - loss: 0.4922 - acc: 0.7671
+Epoch 119/150
+614/614 [==============================] - 0s 108us/step - loss: 0.4880 - acc: 0.7655
+Epoch 120/150
+614/614 [==============================] - 0s 106us/step - loss: 0.4913 - acc: 0.7769
+Epoch 121/150
+614/614 [==============================] - 0s 101us/step - loss: 0.4880 - acc: 0.7704
+Epoch 122/150
+614/614 [==============================] - 0s 105us/step - loss: 0.4932 - acc: 0.7687
+Epoch 123/150
+614/614 [==============================] - 0s 103us/step - loss: 0.4918 - acc: 0.7655
+Epoch 124/150
+614/614 [==============================] - 0s 109us/step - loss: 0.4873 - acc: 0.7720
+Epoch 125/150
+614/614 [==============================] - 0s 97us/step - loss: 0.4865 - acc: 0.7687
+Epoch 126/150
+614/614 [==============================] - 0s 108us/step - loss: 0.4997 - acc: 0.7410
+Epoch 127/150
+614/614 [==============================] - 0s 112us/step - loss: 0.4920 - acc: 0.7590
+Epoch 128/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4855 - acc: 0.7638
+Epoch 129/150
+614/614 [==============================] - 0s 100us/step - loss: 0.4770 - acc: 0.7736
+Epoch 130/150
+614/614 [==============================] - 0s 94us/step - loss: 0.4808 - acc: 0.7671
+Epoch 131/150
+614/614 [==============================] - 0s 110us/step - loss: 0.4877 - acc: 0.7687
+Epoch 132/150
+614/614 [==============================] - 0s 107us/step - loss: 0.4869 - acc: 0.7606
+Epoch 133/150
+614/614 [==============================] - 0s 100us/step - loss: 0.4851 - acc: 0.7638
+Epoch 134/150
+614/614 [==============================] - 0s 107us/step - loss: 0.4786 - acc: 0.7622
+Epoch 135/150
+614/614 [==============================] - 0s 108us/step - loss: 0.4917 - acc: 0.7622
+Epoch 136/150
+614/614 [==============================] - 0s 109us/step - loss: 0.4775 - acc: 0.7752
+Epoch 137/150
+614/614 [==============================] - 0s 107us/step - loss: 0.4792 - acc: 0.7818
+Epoch 138/150
+614/614 [==============================] - 0s 101us/step - loss: 0.4880 - acc: 0.7541
+Epoch 139/150
+614/614 [==============================] - 0s 104us/step - loss: 0.4734 - acc: 0.7883
+Epoch 140/150
+614/614 [==============================] - 0s 103us/step - loss: 0.4752 - acc: 0.7671
+Epoch 141/150
+614/614 [==============================] - 0s 105us/step - loss: 0.4772 - acc: 0.7671
+Epoch 142/150
+614/614 [==============================] - 0s 99us/step - loss: 0.4766 - acc: 0.7834
+Epoch 143/150
+614/614 [==============================] - 0s 99us/step - loss: 0.4841 - acc: 0.7752
+Epoch 144/150
+614/614 [==============================] - 0s 109us/step - loss: 0.4916 - acc: 0.7687
+Epoch 145/150
+614/614 [==============================] - 0s 99us/step - loss: 0.4773 - acc: 0.7704
+Epoch 146/150
+614/614 [==============================] - 0s 109us/step - loss: 0.4773 - acc: 0.7590
+Epoch 147/150
+614/614 [==============================] - 0s 107us/step - loss: 0.4777 - acc: 0.7818
+Epoch 148/150
+614/614 [==============================] - 0s 98us/step - loss: 0.4764 - acc: 0.7704
+Epoch 149/150
+614/614 [==============================] - 0s 103us/step - loss: 0.4743 - acc: 0.7752
+Epoch 150/150
+614/614 [==============================] - 0s 105us/step - loss: 0.4747 - acc: 0.7720
+Out[24]: <keras.callbacks.History at 0x7f5b0a5218d0>
+
+In [25]: 
+
+In [25]: # Predicting the Test set results
+
+In [26]: y_pred = model.predict(X_test)
+
+In [27]: y_pred = (y_pred > 0.5)
+
+In [28]: 
+
+In [28]: # Creating the Confusion Matrix
+
+In [29]: 
+
+In [29]: from sklearn.metrics import confusion_matrix
+
+In [30]: cm = confusion_matrix(y_test, y_pred)
+
+In [31]: print(cm)
+[[80 21]
+ [18 35]]
+
+In [32]: print((cm[0][0]+cm[1][1])/cm.sum)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-32-615c5611329b> in <module>()
+----> 1 print((cm[0][0]+cm[1][1])/cm.sum)
+
+TypeError: unsupported operand type(s) for /: 'int' and 'builtin_function_or_method'
+
+In [33]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.7467532467532467
+
+In [34]: # Compiling Neural Network
+
+In [35]: model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+In [36]: model.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+Epoch 1/100
+614/614 [==============================] - 0s 492us/step - loss: 0.4817 - acc: 0.7655
+Epoch 2/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4767 - acc: 0.7834
+Epoch 3/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4769 - acc: 0.7687
+Epoch 4/100
+614/614 [==============================] - 0s 114us/step - loss: 0.4740 - acc: 0.7752
+Epoch 5/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4835 - acc: 0.7850
+Epoch 6/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4723 - acc: 0.7850
+Epoch 7/100
+614/614 [==============================] - 0s 109us/step - loss: 0.4687 - acc: 0.7801
+Epoch 8/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4795 - acc: 0.7606
+Epoch 9/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4743 - acc: 0.7720
+Epoch 10/100
+614/614 [==============================] - 0s 114us/step - loss: 0.4947 - acc: 0.7687
+Epoch 11/100
+614/614 [==============================] - 0s 116us/step - loss: 0.4658 - acc: 0.7818
+Epoch 12/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4760 - acc: 0.7720
+Epoch 13/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4752 - acc: 0.7671
+Epoch 14/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4695 - acc: 0.7785
+Epoch 15/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4696 - acc: 0.7720
+Epoch 16/100
+614/614 [==============================] - 0s 111us/step - loss: 0.4708 - acc: 0.7736
+Epoch 17/100
+614/614 [==============================] - 0s 113us/step - loss: 0.4699 - acc: 0.7752
+Epoch 18/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4688 - acc: 0.7769
+Epoch 19/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4673 - acc: 0.7834
+Epoch 20/100
+614/614 [==============================] - 0s 117us/step - loss: 0.4645 - acc: 0.7850
+Epoch 21/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4645 - acc: 0.7720
+Epoch 22/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4581 - acc: 0.7883
+Epoch 23/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4693 - acc: 0.7769
+Epoch 24/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4625 - acc: 0.7866
+Epoch 25/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4634 - acc: 0.7883
+Epoch 26/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4648 - acc: 0.7720
+Epoch 27/100
+614/614 [==============================] - 0s 103us/step - loss: 0.4630 - acc: 0.7801
+Epoch 28/100
+614/614 [==============================] - 0s 103us/step - loss: 0.4620 - acc: 0.7932
+Epoch 29/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4688 - acc: 0.7736
+Epoch 30/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4561 - acc: 0.7834
+Epoch 31/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4634 - acc: 0.7834
+Epoch 32/100
+614/614 [==============================] - 0s 101us/step - loss: 0.4770 - acc: 0.7638
+Epoch 33/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4666 - acc: 0.7834
+Epoch 34/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4585 - acc: 0.7915
+Epoch 35/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4587 - acc: 0.7769
+Epoch 36/100
+614/614 [==============================] - 0s 102us/step - loss: 0.4570 - acc: 0.7752
+Epoch 37/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4537 - acc: 0.7785
+Epoch 38/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4640 - acc: 0.7866
+Epoch 39/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4546 - acc: 0.7834
+Epoch 40/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4596 - acc: 0.7801
+Epoch 41/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4629 - acc: 0.7752
+Epoch 42/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4545 - acc: 0.7850
+Epoch 43/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4549 - acc: 0.7980
+Epoch 44/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4589 - acc: 0.7818
+Epoch 45/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4635 - acc: 0.7883
+Epoch 46/100
+614/614 [==============================] - 0s 113us/step - loss: 0.4606 - acc: 0.7818
+Epoch 47/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4563 - acc: 0.7687
+Epoch 48/100
+614/614 [==============================] - 0s 118us/step - loss: 0.4517 - acc: 0.7915
+Epoch 49/100
+614/614 [==============================] - 0s 111us/step - loss: 0.4688 - acc: 0.7720
+Epoch 50/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4645 - acc: 0.7883
+Epoch 51/100
+614/614 [==============================] - 0s 124us/step - loss: 0.4458 - acc: 0.7850
+Epoch 52/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4539 - acc: 0.7932
+Epoch 53/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4507 - acc: 0.7818
+Epoch 54/100
+614/614 [==============================] - 0s 99us/step - loss: 0.4547 - acc: 0.7899
+Epoch 55/100
+614/614 [==============================] - 0s 106us/step - loss: 0.4528 - acc: 0.7850
+Epoch 56/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4583 - acc: 0.7638
+Epoch 57/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4428 - acc: 0.7866
+Epoch 58/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4526 - acc: 0.7818
+Epoch 59/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4487 - acc: 0.7899
+Epoch 60/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4469 - acc: 0.7948
+Epoch 61/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4475 - acc: 0.7899
+Epoch 62/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4490 - acc: 0.8029
+Epoch 63/100
+614/614 [==============================] - 0s 111us/step - loss: 0.4506 - acc: 0.7736
+Epoch 64/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4435 - acc: 0.7915
+Epoch 65/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4567 - acc: 0.7720
+Epoch 66/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4501 - acc: 0.7915
+Epoch 67/100
+614/614 [==============================] - 0s 99us/step - loss: 0.4530 - acc: 0.7818
+Epoch 68/100
+614/614 [==============================] - 0s 106us/step - loss: 0.4461 - acc: 0.7866
+Epoch 69/100
+614/614 [==============================] - 0s 102us/step - loss: 0.4420 - acc: 0.7932
+Epoch 70/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4480 - acc: 0.7866
+Epoch 71/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4444 - acc: 0.7850
+Epoch 72/100
+614/614 [==============================] - 0s 103us/step - loss: 0.4504 - acc: 0.7997
+Epoch 73/100
+614/614 [==============================] - 0s 99us/step - loss: 0.4544 - acc: 0.7785
+Epoch 74/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4390 - acc: 0.7932
+Epoch 75/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4367 - acc: 0.7964
+Epoch 76/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4430 - acc: 0.7915
+Epoch 77/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4412 - acc: 0.7997
+Epoch 78/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4439 - acc: 0.7883
+Epoch 79/100
+614/614 [==============================] - 0s 99us/step - loss: 0.4414 - acc: 0.7834
+Epoch 80/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4400 - acc: 0.7834
+Epoch 81/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4470 - acc: 0.7785
+Epoch 82/100
+614/614 [==============================] - 0s 106us/step - loss: 0.4500 - acc: 0.7834
+Epoch 83/100
+614/614 [==============================] - 0s 101us/step - loss: 0.4379 - acc: 0.7915
+Epoch 84/100
+614/614 [==============================] - 0s 103us/step - loss: 0.4332 - acc: 0.7899
+Epoch 85/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4459 - acc: 0.7834
+Epoch 86/100
+614/614 [==============================] - 0s 106us/step - loss: 0.4357 - acc: 0.7948
+Epoch 87/100
+614/614 [==============================] - 0s 109us/step - loss: 0.4533 - acc: 0.7866
+Epoch 88/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4377 - acc: 0.8029
+Epoch 89/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4458 - acc: 0.7899
+Epoch 90/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4259 - acc: 0.8029
+Epoch 91/100
+614/614 [==============================] - 0s 98us/step - loss: 0.4566 - acc: 0.7785
+Epoch 92/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4459 - acc: 0.7801
+Epoch 93/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4306 - acc: 0.7948
+Epoch 94/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4342 - acc: 0.7932
+Epoch 95/100
+614/614 [==============================] - 0s 104us/step - loss: 0.4368 - acc: 0.7899
+Epoch 96/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4380 - acc: 0.7883
+Epoch 97/100
+614/614 [==============================] - 0s 101us/step - loss: 0.4386 - acc: 0.7915
+Epoch 98/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4464 - acc: 0.7850
+Epoch 99/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4385 - acc: 0.7818
+Epoch 100/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4330 - acc: 0.7866
+Out[36]: <keras.callbacks.History at 0x7f5b0a7a2668>
+
+In [37]: 
+
+In [37]: # Predicting the Test set results
+
+In [38]: y_pred = model.predict(X_test)
+
+In [39]: y_pred = (y_pred > 0.5)
+
+In [40]: 
+
+In [40]: # Creating the Confusion Matrix
+
+In [41]: 
+
+In [41]: from sklearn.metrics import confusion_matrix
+
+In [42]: cm = confusion_matrix(y_test, y_pred)
+
+In [43]: print(cm)
+[[85 16]
+ [22 31]]
+
+In [44]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.7532467532467533
+
+In [45]: ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+  File "<ipython-input-45-a177cfae51ae>", line 1
+    ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+                                              ^
+SyntaxError: invalid character in identifier
+
+
+In [46]: from ann_visualizer.visualize import ann_viz;
+
+In [47]: ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+  File "<ipython-input-47-a177cfae51ae>", line 1
+    ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+                                              ^
+SyntaxError: invalid character in identifier
+
+
+In [48]: ann_viz(model, view=True, filename="network.gv", title=”DiaNN”)
+  File "<ipython-input-48-2d37f0aa3542>", line 1
+    ann_viz(model, view=True, filename="network.gv", title=”DiaNN”)
+                                                                 ^
+SyntaxError: invalid character in identifier
+
+
+In [49]: ann_viz(model, view=True, filename="network.gv", title="DiaNN")
+---------------------------------------------------------------------------
+ExecutableNotFound                        Traceback (most recent call last)
+<ipython-input-49-c1b34be431cb> in <module>()
+----> 1 ann_viz(model, view=True, filename="network.gv", title="DiaNN")
+
+/usr/local/lib/python3.6/dist-packages/ann_visualizer/visualize.py in ann_viz(model, view, filename, title)
+    204         g.edge_attr.update(arrowhead="none", color="#707070");
+    205         if view == True:
+--> 206             g.view();
+
+/usr/local/lib/python3.6/dist-packages/graphviz/files.py in view(self, filename, directory, cleanup)
+    201         """
+    202         return self.render(filename=filename, directory=directory, view=True,
+--> 203                            cleanup=cleanup)
+    204 
+    205     def _view(self, filepath, format):
+
+/usr/local/lib/python3.6/dist-packages/graphviz/files.py in render(self, filename, directory, view, cleanup)
+    174         filepath = self.save(filename, directory)
+    175 
+--> 176         rendered = backend.render(self._engine, self._format, filepath)
+    177 
+    178         if cleanup:
+
+/usr/local/lib/python3.6/dist-packages/graphviz/backend.py in render(engine, format, filepath, quiet)
+    140     """
+    141     cmd, rendered = command(engine, format, filepath)
+--> 142     run(cmd, capture_output=True, check=True, quiet=quiet)
+    143     return rendered
+    144 
+
+/usr/local/lib/python3.6/dist-packages/graphviz/backend.py in run(cmd, input, capture_output, check, quiet, **kwargs)
+    112     except OSError as e:
+    113         if e.errno == errno.ENOENT:
+--> 114             raise ExecutableNotFound(cmd)
+    115         else:  # pragma: no cover
+    116             raise
+
+ExecutableNotFound: failed to execute ['dot', '-Tpdf', '-O', 'network.gv'], make sure the Graphviz executables are on your systems' PATH
+
+In [50]: ann_viz(model, view=True, filename="network.gv", title=”DiaNN”)
+  File "<ipython-input-50-2d37f0aa3542>", line 1
+    ann_viz(model, view=True, filename="network.gv", title=”DiaNN”)
+                                                                 ^
+SyntaxError: invalid character in identifier
+
+
+In [51]: ann_viz(model, view=True, filename="network.gv", title="DiaNN")
+
+In [52]: model2 = Sequential()
+
+In [53]: 
+
+In [53]: model2.add(Dense(output_dim = 32, init = 'uniform', activation = 'sigmoid', input_dim = 8))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", input_dim=8, units=32, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [54]: model2.add(Dense(output_dim = 25, init = 'uniform', activation = 'sigmoid'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", units=25, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [55]: model2.add(Dense(output_dim = 45, init = 'uniform', activation = 'sigmoid'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", units=45, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [56]: model2.add(Dense(output_dim = 65, init = 'uniform', activation = 'sigmoid'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", units=65, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [57]: model2.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
+/usr/bin/ipython3:1: UserWarning: Update your `Dense` call to the Keras 2 API: `Dense(activation="sigmoid", units=1, kernel_initializer="uniform")`
+  #!/usr/bin/env python3
+
+In [58]: 
+
+In [58]: # Compiling Neural Network
+
+In [59]: model2.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+In [60]: model2.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+/usr/bin/ipython3:1: UserWarning: The `nb_epoch` argument in `fit` has been renamed `epochs`.
+  #!/usr/bin/env python3
+Epoch 1/100
+614/614 [==============================] - 1s 2ms/step - loss: 0.6524 - acc: 0.6466
+Epoch 2/100
+614/614 [==============================] - 0s 131us/step - loss: 0.6508 - acc: 0.6498
+Epoch 3/100
+614/614 [==============================] - 0s 128us/step - loss: 0.6482 - acc: 0.6498
+Epoch 4/100
+614/614 [==============================] - 0s 116us/step - loss: 0.6490 - acc: 0.6498
+Epoch 5/100
+614/614 [==============================] - 0s 122us/step - loss: 0.6484 - acc: 0.6498
+Epoch 6/100
+614/614 [==============================] - 0s 124us/step - loss: 0.6475 - acc: 0.6498
+Epoch 7/100
+614/614 [==============================] - 0s 135us/step - loss: 0.6507 - acc: 0.6498
+Epoch 8/100
+614/614 [==============================] - 0s 108us/step - loss: 0.6477 - acc: 0.6498
+Epoch 9/100
+614/614 [==============================] - 0s 139us/step - loss: 0.6423 - acc: 0.6498
+Epoch 10/100
+614/614 [==============================] - 0s 119us/step - loss: 0.6355 - acc: 0.6498
+Epoch 11/100
+614/614 [==============================] - 0s 128us/step - loss: 0.6346 - acc: 0.6498
+Epoch 12/100
+614/614 [==============================] - 0s 133us/step - loss: 0.6271 - acc: 0.6498
+Epoch 13/100
+614/614 [==============================] - 0s 122us/step - loss: 0.6173 - acc: 0.6498
+Epoch 14/100
+614/614 [==============================] - 0s 123us/step - loss: 0.6136 - acc: 0.6498
+Epoch 15/100
+614/614 [==============================] - 0s 123us/step - loss: 0.6158 - acc: 0.6433
+Epoch 16/100
+614/614 [==============================] - 0s 120us/step - loss: 0.6044 - acc: 0.6498
+Epoch 17/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5928 - acc: 0.6922
+Epoch 18/100
+614/614 [==============================] - 0s 125us/step - loss: 0.5894 - acc: 0.7068
+Epoch 19/100
+614/614 [==============================] - 0s 132us/step - loss: 0.5957 - acc: 0.6889
+Epoch 20/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5861 - acc: 0.6922
+Epoch 21/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5909 - acc: 0.7036
+Epoch 22/100
+614/614 [==============================] - 0s 132us/step - loss: 0.5861 - acc: 0.7150
+Epoch 23/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5837 - acc: 0.6922
+Epoch 24/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5776 - acc: 0.7068
+Epoch 25/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5768 - acc: 0.7003
+Epoch 26/100
+614/614 [==============================] - 0s 134us/step - loss: 0.5707 - acc: 0.6971
+Epoch 27/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5729 - acc: 0.7036
+Epoch 28/100
+614/614 [==============================] - 0s 119us/step - loss: 0.5818 - acc: 0.6906
+Epoch 29/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5753 - acc: 0.6938
+Epoch 30/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5815 - acc: 0.6808
+Epoch 31/100
+614/614 [==============================] - 0s 124us/step - loss: 0.5700 - acc: 0.7101
+Epoch 32/100
+614/614 [==============================] - 0s 120us/step - loss: 0.5690 - acc: 0.6922
+Epoch 33/100
+614/614 [==============================] - 0s 120us/step - loss: 0.5726 - acc: 0.7264
+Epoch 34/100
+614/614 [==============================] - 0s 128us/step - loss: 0.5634 - acc: 0.7182
+Epoch 35/100
+614/614 [==============================] - 0s 137us/step - loss: 0.5693 - acc: 0.7068
+Epoch 36/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5715 - acc: 0.7166
+Epoch 37/100
+614/614 [==============================] - 0s 135us/step - loss: 0.5698 - acc: 0.7036
+Epoch 38/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5611 - acc: 0.7134
+Epoch 39/100
+614/614 [==============================] - 0s 144us/step - loss: 0.5566 - acc: 0.7134
+Epoch 40/100
+614/614 [==============================] - 0s 152us/step - loss: 0.5638 - acc: 0.7085
+Epoch 41/100
+614/614 [==============================] - 0s 144us/step - loss: 0.5574 - acc: 0.7101
+Epoch 42/100
+614/614 [==============================] - 0s 167us/step - loss: 0.5625 - acc: 0.7068
+Epoch 43/100
+614/614 [==============================] - 0s 134us/step - loss: 0.5661 - acc: 0.7134
+Epoch 44/100
+614/614 [==============================] - 0s 118us/step - loss: 0.5529 - acc: 0.7182
+Epoch 45/100
+614/614 [==============================] - 0s 120us/step - loss: 0.5732 - acc: 0.7150
+Epoch 46/100
+614/614 [==============================] - 0s 129us/step - loss: 0.5576 - acc: 0.7134
+Epoch 47/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5538 - acc: 0.7313
+Epoch 48/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5536 - acc: 0.7199
+Epoch 49/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5523 - acc: 0.7150
+Epoch 50/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5558 - acc: 0.7166
+Epoch 51/100
+614/614 [==============================] - 0s 126us/step - loss: 0.5573 - acc: 0.7134
+Epoch 52/100
+614/614 [==============================] - 0s 126us/step - loss: 0.5595 - acc: 0.7166
+Epoch 53/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5552 - acc: 0.7117
+Epoch 54/100
+614/614 [==============================] - 0s 129us/step - loss: 0.5482 - acc: 0.7362
+Epoch 55/100
+614/614 [==============================] - 0s 133us/step - loss: 0.5610 - acc: 0.7068
+Epoch 56/100
+614/614 [==============================] - 0s 125us/step - loss: 0.5455 - acc: 0.7101
+Epoch 57/100
+614/614 [==============================] - 0s 134us/step - loss: 0.5563 - acc: 0.7182
+Epoch 58/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5451 - acc: 0.7264
+Epoch 59/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5491 - acc: 0.7264
+Epoch 60/100
+614/614 [==============================] - 0s 138us/step - loss: 0.5537 - acc: 0.7150
+Epoch 61/100
+614/614 [==============================] - 0s 124us/step - loss: 0.5450 - acc: 0.7215
+Epoch 62/100
+614/614 [==============================] - 0s 131us/step - loss: 0.5372 - acc: 0.7296
+Epoch 63/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5452 - acc: 0.7199
+Epoch 64/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5408 - acc: 0.7248
+Epoch 65/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5409 - acc: 0.7345
+Epoch 66/100
+614/614 [==============================] - 0s 131us/step - loss: 0.5379 - acc: 0.7329
+Epoch 67/100
+614/614 [==============================] - 0s 129us/step - loss: 0.5383 - acc: 0.7182
+Epoch 68/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5408 - acc: 0.7280
+Epoch 69/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5403 - acc: 0.7329
+Epoch 70/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5409 - acc: 0.7329
+Epoch 71/100
+614/614 [==============================] - 0s 129us/step - loss: 0.5339 - acc: 0.7345
+Epoch 72/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5291 - acc: 0.7329
+Epoch 73/100
+614/614 [==============================] - 0s 116us/step - loss: 0.5299 - acc: 0.7313
+Epoch 74/100
+614/614 [==============================] - 0s 131us/step - loss: 0.5401 - acc: 0.7117
+Epoch 75/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5304 - acc: 0.7296
+Epoch 76/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5302 - acc: 0.7378
+Epoch 77/100
+614/614 [==============================] - 0s 114us/step - loss: 0.5247 - acc: 0.7394
+Epoch 78/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5319 - acc: 0.7313
+Epoch 79/100
+614/614 [==============================] - 0s 131us/step - loss: 0.5311 - acc: 0.7378
+Epoch 80/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5388 - acc: 0.7264
+Epoch 81/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5261 - acc: 0.7524
+Epoch 82/100
+614/614 [==============================] - 0s 126us/step - loss: 0.5252 - acc: 0.7296
+Epoch 83/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5244 - acc: 0.7313
+Epoch 84/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5228 - acc: 0.7329
+Epoch 85/100
+614/614 [==============================] - 0s 128us/step - loss: 0.5210 - acc: 0.7345
+Epoch 86/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5226 - acc: 0.7280
+Epoch 87/100
+614/614 [==============================] - 0s 137us/step - loss: 0.5109 - acc: 0.7378
+Epoch 88/100
+614/614 [==============================] - 0s 126us/step - loss: 0.5131 - acc: 0.7427
+Epoch 89/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5111 - acc: 0.7329
+Epoch 90/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5184 - acc: 0.7345
+Epoch 91/100
+614/614 [==============================] - 0s 126us/step - loss: 0.5139 - acc: 0.7459
+Epoch 92/100
+614/614 [==============================] - 0s 134us/step - loss: 0.5075 - acc: 0.7443
+Epoch 93/100
+614/614 [==============================] - 0s 128us/step - loss: 0.5099 - acc: 0.7508
+Epoch 94/100
+614/614 [==============================] - 0s 128us/step - loss: 0.5141 - acc: 0.7459
+Epoch 95/100
+614/614 [==============================] - 0s 171us/step - loss: 0.5077 - acc: 0.7541
+Epoch 96/100
+614/614 [==============================] - 0s 157us/step - loss: 0.5197 - acc: 0.7362
+Epoch 97/100
+614/614 [==============================] - 0s 123us/step - loss: 0.5045 - acc: 0.7492
+Epoch 98/100
+614/614 [==============================] - 0s 130us/step - loss: 0.5037 - acc: 0.7524
+Epoch 99/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5030 - acc: 0.7541
+Epoch 100/100
+614/614 [==============================] - 0s 124us/step - loss: 0.4937 - acc: 0.7557
+Out[60]: <keras.callbacks.History at 0x7f5b0a49c518>
+
+In [61]: # Predicting the Test set results
+
+In [62]: y_pred = model.predict(X_test)
+
+In [63]: y_pred = (y_pred > 0.5)
+
+In [64]: 
+
+In [64]: # Creating the Confusion Matrix
+
+In [65]: 
+
+In [65]: from sklearn.metrics import confusion_matrix
+
+In [66]: cm = confusion_matrix(y_test, y_pred)
+
+In [67]: print(cm)
+[[85 16]
+ [22 31]]
+
+In [68]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.7532467532467533
+
+In [69]: y_pred = model2.predict(X_test)
+
+In [70]: y_pred = (y_pred > 0.5)
+
+In [71]: from sklearn.metrics import confusion_matrix
+
+In [72]: cm = confusion_matrix(y_test, y_pred)
+
+In [73]: y_pred = (y_pred > 0.5)
+
+In [74]: cm = confusion_matrix(y_test, y_pred)
+
+In [75]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.6818181818181818
+
+In [76]: model2 = Sequential()
+
+In [77]: 
+
+In [77]: model2.add(Dense(output_dim = 32, init = 'uniform', activation = 'sigmoid', input_dim = 8))
+
+In [78]: model2.add(Dense(output_dim = 25, init = 'uniform', activation = 'sigmoid'))
+
+In [79]: model2.add(Dense(output_dim = 1, init = 'uniform', activation = 'sigmoid'))
+
+In [80]: 
+
+In [80]: # Compiling Neural Network
+
+In [81]: model2.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+
+In [82]: model2.fit(X_train, y_train, batch_size = 10, nb_epoch = 100)
+Epoch 1/100
+614/614 [==============================] - 1s 1ms/step - loss: 0.6620 - acc: 0.6498
+Epoch 2/100
+614/614 [==============================] - 0s 129us/step - loss: 0.6465 - acc: 0.6498
+Epoch 3/100
+614/614 [==============================] - 0s 113us/step - loss: 0.6439 - acc: 0.6498
+Epoch 4/100
+614/614 [==============================] - 0s 118us/step - loss: 0.6413 - acc: 0.6498
+Epoch 5/100
+614/614 [==============================] - 0s 117us/step - loss: 0.6363 - acc: 0.6498
+Epoch 6/100
+614/614 [==============================] - 0s 110us/step - loss: 0.6331 - acc: 0.6498
+Epoch 7/100
+614/614 [==============================] - 0s 120us/step - loss: 0.6254 - acc: 0.6498
+Epoch 8/100
+614/614 [==============================] - 0s 105us/step - loss: 0.6178 - acc: 0.6498
+Epoch 9/100
+614/614 [==============================] - 0s 110us/step - loss: 0.6109 - acc: 0.6498
+Epoch 10/100
+614/614 [==============================] - 0s 111us/step - loss: 0.6043 - acc: 0.6498
+Epoch 11/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5986 - acc: 0.6498
+Epoch 12/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5862 - acc: 0.6824
+Epoch 13/100
+614/614 [==============================] - 0s 114us/step - loss: 0.5893 - acc: 0.7101
+Epoch 14/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5846 - acc: 0.7101
+Epoch 15/100
+614/614 [==============================] - 0s 106us/step - loss: 0.5882 - acc: 0.6678
+Epoch 16/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5778 - acc: 0.7052
+Epoch 17/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5786 - acc: 0.7117
+Epoch 18/100
+614/614 [==============================] - 0s 107us/step - loss: 0.5791 - acc: 0.7085
+Epoch 19/100
+614/614 [==============================] - 0s 110us/step - loss: 0.5725 - acc: 0.7182
+Epoch 20/100
+614/614 [==============================] - 0s 103us/step - loss: 0.5699 - acc: 0.7215
+Epoch 21/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5752 - acc: 0.7166
+Epoch 22/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5632 - acc: 0.7313
+Epoch 23/100
+614/614 [==============================] - 0s 118us/step - loss: 0.5610 - acc: 0.7345
+Epoch 24/100
+614/614 [==============================] - 0s 116us/step - loss: 0.5610 - acc: 0.7150
+Epoch 25/100
+614/614 [==============================] - 0s 112us/step - loss: 0.5654 - acc: 0.7280
+Epoch 26/100
+614/614 [==============================] - 0s 116us/step - loss: 0.5605 - acc: 0.7215
+Epoch 27/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5531 - acc: 0.7231
+Epoch 28/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5569 - acc: 0.7248
+Epoch 29/100
+614/614 [==============================] - 0s 118us/step - loss: 0.5604 - acc: 0.7166
+Epoch 30/100
+614/614 [==============================] - 0s 110us/step - loss: 0.5528 - acc: 0.7134
+Epoch 31/100
+614/614 [==============================] - 0s 112us/step - loss: 0.5512 - acc: 0.7296
+Epoch 32/100
+614/614 [==============================] - 0s 120us/step - loss: 0.5477 - acc: 0.7264
+Epoch 33/100
+614/614 [==============================] - 0s 114us/step - loss: 0.5512 - acc: 0.7248
+Epoch 34/100
+614/614 [==============================] - 0s 116us/step - loss: 0.5499 - acc: 0.7313
+Epoch 35/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5395 - acc: 0.7394
+Epoch 36/100
+614/614 [==============================] - 0s 118us/step - loss: 0.5409 - acc: 0.7345
+Epoch 37/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5440 - acc: 0.7459
+Epoch 38/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5419 - acc: 0.7296
+Epoch 39/100
+614/614 [==============================] - 0s 106us/step - loss: 0.5444 - acc: 0.7345
+Epoch 40/100
+614/614 [==============================] - 0s 107us/step - loss: 0.5456 - acc: 0.7508
+Epoch 41/100
+614/614 [==============================] - 0s 105us/step - loss: 0.5360 - acc: 0.7443
+Epoch 42/100
+614/614 [==============================] - 0s 106us/step - loss: 0.5374 - acc: 0.7296
+Epoch 43/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5371 - acc: 0.7410
+Epoch 44/100
+614/614 [==============================] - 0s 106us/step - loss: 0.5338 - acc: 0.7345
+Epoch 45/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5233 - acc: 0.7476
+Epoch 46/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5368 - acc: 0.7345
+Epoch 47/100
+614/614 [==============================] - 0s 109us/step - loss: 0.5303 - acc: 0.7427
+Epoch 48/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5303 - acc: 0.7362
+Epoch 49/100
+614/614 [==============================] - 0s 107us/step - loss: 0.5274 - acc: 0.7508
+Epoch 50/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5257 - acc: 0.7492
+Epoch 51/100
+614/614 [==============================] - 0s 110us/step - loss: 0.5245 - acc: 0.7492
+Epoch 52/100
+614/614 [==============================] - 0s 112us/step - loss: 0.5335 - acc: 0.7410
+Epoch 53/100
+614/614 [==============================] - 0s 128us/step - loss: 0.5237 - acc: 0.7378
+Epoch 54/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5174 - acc: 0.7443
+Epoch 55/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5252 - acc: 0.7492
+Epoch 56/100
+614/614 [==============================] - 0s 118us/step - loss: 0.5236 - acc: 0.7394
+Epoch 57/100
+614/614 [==============================] - 0s 121us/step - loss: 0.5202 - acc: 0.7573
+Epoch 58/100
+614/614 [==============================] - 0s 137us/step - loss: 0.5127 - acc: 0.7557
+Epoch 59/100
+614/614 [==============================] - 0s 131us/step - loss: 0.5207 - acc: 0.7557
+Epoch 60/100
+614/614 [==============================] - 0s 111us/step - loss: 0.5207 - acc: 0.7427
+Epoch 61/100
+614/614 [==============================] - 0s 122us/step - loss: 0.5160 - acc: 0.7541
+Epoch 62/100
+614/614 [==============================] - 0s 110us/step - loss: 0.5249 - acc: 0.7427
+Epoch 63/100
+614/614 [==============================] - 0s 140us/step - loss: 0.5105 - acc: 0.7459
+Epoch 64/100
+614/614 [==============================] - 0s 106us/step - loss: 0.5093 - acc: 0.7524
+Epoch 65/100
+614/614 [==============================] - 0s 102us/step - loss: 0.5091 - acc: 0.7459
+Epoch 66/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5039 - acc: 0.7606
+Epoch 67/100
+614/614 [==============================] - 0s 113us/step - loss: 0.5065 - acc: 0.7590
+Epoch 68/100
+614/614 [==============================] - 0s 115us/step - loss: 0.5101 - acc: 0.7443
+Epoch 69/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5086 - acc: 0.7476
+Epoch 70/100
+614/614 [==============================] - 0s 103us/step - loss: 0.5033 - acc: 0.7622
+Epoch 71/100
+614/614 [==============================] - 0s 101us/step - loss: 0.5024 - acc: 0.7720
+Epoch 72/100
+614/614 [==============================] - 0s 100us/step - loss: 0.4990 - acc: 0.7492
+Epoch 73/100
+614/614 [==============================] - 0s 108us/step - loss: 0.5091 - acc: 0.7606
+Epoch 74/100
+614/614 [==============================] - 0s 103us/step - loss: 0.4993 - acc: 0.7590
+Epoch 75/100
+614/614 [==============================] - 0s 104us/step - loss: 0.5098 - acc: 0.7541
+Epoch 76/100
+614/614 [==============================] - 0s 105us/step - loss: 0.4953 - acc: 0.7557
+Epoch 77/100
+614/614 [==============================] - 0s 127us/step - loss: 0.5036 - acc: 0.7492
+Epoch 78/100
+614/614 [==============================] - 0s 114us/step - loss: 0.4974 - acc: 0.7508
+Epoch 79/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4878 - acc: 0.7573
+Epoch 80/100
+614/614 [==============================] - 0s 108us/step - loss: 0.4945 - acc: 0.7622
+Epoch 81/100
+614/614 [==============================] - 0s 113us/step - loss: 0.4870 - acc: 0.7704
+Epoch 82/100
+614/614 [==============================] - 0s 120us/step - loss: 0.4901 - acc: 0.7638
+Epoch 83/100
+614/614 [==============================] - 0s 102us/step - loss: 0.4940 - acc: 0.7573
+Epoch 84/100
+614/614 [==============================] - 0s 106us/step - loss: 0.4886 - acc: 0.7785
+Epoch 85/100
+614/614 [==============================] - 0s 98us/step - loss: 0.4858 - acc: 0.7557
+Epoch 86/100
+614/614 [==============================] - 0s 117us/step - loss: 0.5020 - acc: 0.7476
+Epoch 87/100
+614/614 [==============================] - 0s 109us/step - loss: 0.4839 - acc: 0.7736
+Epoch 88/100
+614/614 [==============================] - 0s 115us/step - loss: 0.4846 - acc: 0.7720
+Epoch 89/100
+614/614 [==============================] - 0s 112us/step - loss: 0.4801 - acc: 0.7622
+Epoch 90/100
+614/614 [==============================] - 0s 109us/step - loss: 0.4871 - acc: 0.7655
+Epoch 91/100
+614/614 [==============================] - 0s 113us/step - loss: 0.4792 - acc: 0.7622
+Epoch 92/100
+614/614 [==============================] - 0s 107us/step - loss: 0.4856 - acc: 0.7704
+Epoch 93/100
+614/614 [==============================] - 0s 116us/step - loss: 0.4874 - acc: 0.7720
+Epoch 94/100
+614/614 [==============================] - 0s 114us/step - loss: 0.4788 - acc: 0.7622
+Epoch 95/100
+614/614 [==============================] - 0s 121us/step - loss: 0.4772 - acc: 0.7818
+Epoch 96/100
+614/614 [==============================] - 0s 117us/step - loss: 0.4760 - acc: 0.7752
+Epoch 97/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4783 - acc: 0.7752
+Epoch 98/100
+614/614 [==============================] - 0s 113us/step - loss: 0.4779 - acc: 0.7638
+Epoch 99/100
+614/614 [==============================] - 0s 111us/step - loss: 0.4877 - acc: 0.7704
+Epoch 100/100
+614/614 [==============================] - 0s 110us/step - loss: 0.4716 - acc: 0.7769
+Out[82]: <keras.callbacks.History at 0x7f5b01914e10>
+
+In [83]: 
+
+In [83]: # Predicting the Test set results
+
+In [84]: y_pred = model.predict(X_test)
+
+In [85]: y_pred = (y_pred > 0.5)
+
+In [86]: 
+
+In [86]: # Creating the Confusion Matrix
+
+In [87]: 
+
+In [87]: from sklearn.metrics import confusion_matrix
+
+In [88]: cm = confusion_matrix(y_test, y_pred)
+
+In [89]: print(cm)
+[[85 16]
+ [22 31]]
+
+In [90]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.7532467532467533
+
+In [91]: ann_viz(model2, view=True, filename=”network.gv”, title=”DiaNN”)
+  File "<ipython-input-91-356ef13030a1>", line 1
+    ann_viz(model2, view=True, filename=”network.gv”, title=”DiaNN”)
+                                               ^
+SyntaxError: invalid character in identifier
+
+
+In [92]: ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+  File "<ipython-input-92-a177cfae51ae>", line 1
+    ann_viz(model, view=True, filename=”network.gv”, title=”DiaNN”)
+                                              ^
+SyntaxError: invalid character in identifier
+
+
+In [93]: ann_viz(model, view=True, filename="network.gv", title="DiaNN")
+
+In [94]: y_pred = model2.predict(X_test)
+In [95]: y_pred = (y_pred > 0.5)
+
+In [96]: cm = confusion_matrix(y_test, y_pred)
+
+In [97]: print((cm[0][0]+cm[1][1])/cm.sum())
+0.6883116883116883
+
+In [98]: ann_viz(model, view=True, filename="network.gv", title="DiaNN")
+
+In [99]: ann_viz(model2, view=True, filename="network.gv", title="DiaNN")
+
+In [100]: echo "# Diabetes-Class-Prediciton-using-Neural-Net" >> README.md
+  File "<ipython-input-100-9f65be260aa4>", line 1
+    echo "# Diabetes-Class-Prediciton-using-Neural-Net" >> README.md
+                                                      ^
+SyntaxError: invalid syntax
+
+
+In [101]: python3 index.py 
